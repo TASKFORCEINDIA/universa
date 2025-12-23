@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Universa</title>
 
   <style>
@@ -63,6 +63,12 @@
       border-radius: 14px;
       padding: 24px;
       text-align: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #444;
     }
 
     .card h3 {
@@ -83,18 +89,23 @@
       color: #777;
       border-top: 1px solid #222;
     }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- APP HEADER -->
+  <!-- HEADER -->
   <header>
     <h1>Universa</h1>
     <p>The World Is Your Campus</p>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section class="hero">
     <h2>Your Global Education Gateway</h2>
     <p>
@@ -107,37 +118,53 @@
   <!-- MAIN SECTIONS -->
   <section class="sections">
 
-    <div class="card">
-      <h3>🌍 Study Abroad</h3>
-      <p>
-        Explore universities across USA, Canada, Europe,
-        UK, Australia, Russia & more.
-      </p>
-    </div>
+    <!-- STUDY ABROAD -->
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Universa,%20I%20want%20to%20study%20abroad.%20Please%20guide%20me."
+       target="_blank">
+      <div class="card">
+        <h3>🌍 Study Abroad</h3>
+        <p>
+          Explore universities across USA, Canada, Europe,
+          UK, Australia, Russia & more.
+        </p>
+      </div>
+    </a>
 
-    <div class="card">
-      <h3>🎓 Scholarships</h3>
-      <p>
-        Find genuine scholarship options based on
-        country, course, and eligibility.
-      </p>
-    </div>
+    <!-- SCHOLARSHIPS -->
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Universa,%20I%20want%20to%20know%20about%20scholarships.%20Please%20guide%20me."
+       target="_blank">
+      <div class="card">
+        <h3>🎓 Scholarships</h3>
+        <p>
+          Find genuine scholarship options based on
+          country, course, and eligibility.
+        </p>
+      </div>
+    </a>
 
-    <div class="card">
-      <h3>💼 Work Opportunities</h3>
-      <p>
-        Part-time, post-study work, and basic skilled
-        jobs worldwide.
-      </p>
-    </div>
+    <!-- WORK OPPORTUNITIES -->
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Universa,%20I%20want%20to%20understand%20work%20opportunities%20abroad.%20Please%20guide%20me."
+       target="_blank">
+      <div class="card">
+        <h3>💼 Work Opportunities</h3>
+        <p>
+          Part-time, post-study work, and basic skilled jobs
+          worldwide.
+        </p>
+      </div>
+    </a>
 
-    <div class="card">
-      <h3>🧭 Honest Guidance</h3>
-      <p>
-        No hype. Real-world information for real
-        student decisions.
-      </p>
-    </div>
+    <!-- HONEST GUIDANCE -->
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Universa,%20I%20want%20honest%20guidance%20about%20studying%20abroad.%20Please%20guide%20me."
+       target="_blank">
+      <div class="card">
+        <h3>🧭 Honest Guidance</h3>
+        <p>
+          No hype. Real-world information for real
+          student decisions.
+        </p>
+      </div>
+    </a>
 
   </section>
 
