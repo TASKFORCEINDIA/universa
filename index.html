@@ -8,47 +8,84 @@
 <style>
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   background:#0b0b0b;
-  color:#fff;
+  color:#ffffff;
 }
 header{
   padding:30px 20px;
   text-align:center;
   border-bottom:1px solid #222;
 }
-header h1{margin:0;font-size:32px;}
-header p{color:#aaa;font-size:14px;margin-top:8px;}
-section{display:none;padding:40px 20px;text-align:center;}
-section.active{display:block;}
-h2{font-size:26px;margin-bottom:12px;}
-p{color:#ccc;max-width:680px;margin:auto;line-height:1.6;}
+header h1{margin:0;font-size:32px;font-weight:700}
+header p{margin-top:8px;font-size:14px;color:#b5b5b5}
+
+section{
+  display:none;
+  padding:40px 20px;
+  text-align:center;
+}
+section.active{display:block}
+
+h2{font-size:26px;margin-bottom:12px}
+p{
+  font-size:15px;
+  color:#cccccc;
+  max-width:760px;
+  margin:auto;
+  line-height:1.7;
+}
+
 .options{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-  max-width:720px;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;
+  max-width:980px;
   margin:30px auto;
 }
 .card{
   background:#121212;
   border:1px solid #222;
   border-radius:14px;
-  padding:22px;
+  padding:16px;
   cursor:pointer;
 }
-.card:hover{border-color:#444;}
+.card:hover{border-color:#444}
+
 .btn{
   display:inline-block;
-  margin-top:25px;
+  margin-top:28px;
   padding:14px 28px;
   border-radius:30px;
-  background:#fff;
+  background:#ffffff;
   color:#000;
   font-weight:600;
   text-decoration:none;
   cursor:pointer;
 }
+
+.warning{
+  max-width:820px;
+  margin:30px auto 0;
+  padding:22px;
+  border:2px solid #ff2b2b;
+  background:#1a0000;
+  color:#ffdede;
+  border-radius:12px;
+  text-align:left;
+}
+.warning h3{
+  margin-top:0;
+  color:#ff4d4d;
+  font-size:18px;
+}
+.warning ul{
+  margin:10px 0 10px 20px;
+}
+.warning li{
+  margin-bottom:6px;
+}
+
 footer{
   text-align:center;
   padding:25px;
@@ -62,91 +99,147 @@ footer{
 <body>
 
 <header>
-<h1>Universa</h1>
-<p>Founded in India. Built for students worldwide.</p>
+  <h1>Universa</h1>
+  <p>Founded in India. Built for students worldwide.</p>
 </header>
 
 <!-- WELCOME -->
 <section id="welcome" class="active">
-<h2>Plan Your Global Education — Honestly</h2>
-<p>Explore global education using real costs, scholarships, and reality — not hype.</p>
+  <h2>Plan Your Global Education — Honestly</h2>
+  <p>
+    Explore international education using real costs, scholarships,
+    and real-world reality — not hype or pressure.
+  </p>
 
-<div class="options">
-  <div class="card" onclick="goTo('countries')">🌍 Explore Countries</div>
-  <div class="card" onclick="goTo('scholarships')">🎓 Scholarships</div>
-  <div class="card" onclick="goTo('costs')">💰 Understand Costs</div>
-  <div class="card" onclick="goTo('budget')">🧭 Get Honest Guidance</div>
-</div>
+  <div class="options">
+    <div class="card" onclick="goTo('countries')">🌍 Explore Countries</div>
+    <div class="card" onclick="goTo('scholarships')">🎓 Scholarships</div>
+    <div class="card" onclick="goTo('costs')">💰 Understand Costs</div>
+    <div class="card" onclick="goTo('budget')">🧭 Get Honest Guidance</div>
+  </div>
 </section>
 
 <!-- COUNTRIES -->
 <section id="countries">
-<h2>Countries Overview</h2>
-<p>Every country follows the same honest structure.</p>
-<div class="options">
-  <div class="card">1️⃣ 1-Year Total Cost</div>
-  <div class="card">2️⃣ Scholarship Ease</div>
-  <div class="card">3️⃣ Visa Basics</div>
-  <div class="card">4️⃣ Part-Time Reality</div>
-  <div class="card">5️⃣ Reality Check</div>
-</div>
-<div class="btn" onclick="goTo('budget')">Ask Mentor</div>
+  <h2>Choose a Country</h2>
+  <p>All countries follow the same transparent structure.</p>
+  <div class="options" id="countryList"></div>
+</section>
+
+<!-- COUNTRY DETAIL -->
+<section id="countryDetail">
+  <h2 id="countryName"></h2>
+  <div class="options">
+    <div class="card">1️⃣ 1-Year Total Cost (min → max)</div>
+    <div class="card">2️⃣ Scholarship Ease</div>
+    <div class="card">3️⃣ Visa Basics</div>
+    <div class="card">4️⃣ Part-Time Reality</div>
+    <div class="card">5️⃣ Reality Check</div>
+  </div>
+  <div class="btn" onclick="goTo('budget')">Proceed</div>
 </section>
 
 <!-- SCHOLARSHIPS -->
 <section id="scholarships">
-<h2>Scholarships — Reality First</h2>
-<p>Scholarships shown by <strong>ease</strong>, not false promises.</p>
-<div class="options">
-  <div class="card">Country-wise scholarships</div>
-  <div class="card">University-level scholarships</div>
-  <div class="card">Merit vs Need-based</div>
-</div>
-<div class="btn" onclick="goTo('budget')">Ask Mentor</div>
+  <h2>Scholarships — By Ease</h2>
+  <p>Scholarships are shown by probability, not false promises.</p>
+  <div class="options">
+    <div class="card">High Ease (Germany, France, Italy)</div>
+    <div class="card">Medium Ease (UK, Ireland, Australia)</div>
+    <div class="card">Low Ease (USA, Canada)</div>
+  </div>
 </section>
 
 <!-- COSTS -->
 <section id="costs">
-<h2>Understanding Costs</h2>
-<p>Tuition, living, insurance, hidden expenses — clearly separated.</p>
-<div class="options">
-  <div class="card">Tuition fees</div>
-  <div class="card">Living expenses</div>
-  <div class="card">Hidden & real costs</div>
-</div>
-<div class="btn" onclick="goTo('budget')">Ask Mentor</div>
+  <h2>Understanding Costs</h2>
+  <p>Tuition, living, insurance, and hidden expenses — clearly separated.</p>
+  <div class="options">
+    <div class="card">Low Budget Countries</div>
+    <div class="card">Mid Budget Countries</div>
+    <div class="card">High Budget Countries</div>
+  </div>
 </section>
 
 <!-- BUDGET -->
 <section id="budget">
-<h2>Your 1-Year Budget</h2>
-<p>This helps the Mentor guide you realistically.</p>
-<div class="options">
-  <div class="card" onclick="goTo('mentor')">Under ₹5 Lakhs</div>
-  <div class="card" onclick="goTo('mentor')">₹5–10 Lakhs</div>
-  <div class="card" onclick="goTo('mentor')">₹10–20 Lakhs</div>
-  <div class="card" onclick="goTo('mentor')">₹20+ Lakhs</div>
-</div>
+  <h2>Your 1-Year Budget</h2>
+  <p>This step filters for serious planning.</p>
+  <div class="options">
+    <div class="card" onclick="goTo('mentor')">Under ₹5 Lakhs</div>
+    <div class="card" onclick="goTo('mentor')">₹5–10 Lakhs</div>
+    <div class="card" onclick="goTo('mentor')">₹10–20 Lakhs</div>
+    <div class="card" onclick="goTo('mentor')">₹20+ Lakhs</div>
+  </div>
 </section>
 
 <!-- MENTOR -->
 <section id="mentor">
-<h2>Ask Mentor</h2>
-<p>No pressure. Honest guidance based on your situation.</p>
-<a class="btn" target="_blank"
-href="https://wa.me/918179456654?text=Hi%20Universa,%20I%20want%20honest%20guidance%20based%20on%20my%20budget.">
-Connect on WhatsApp
-</a>
+  <h2>Mentor Access</h2>
+
+  <div class="warning">
+    <h3>❌ SERIOUS NOTICE — READ CAREFULLY</h3>
+    <p>
+      Mentor access is provided <strong>only for serious students</strong>
+      who are genuinely planning admissions.
+    </p>
+    <ul>
+      <li>Do NOT send greetings, emojis, or casual messages</li>
+      <li>Do NOT ask personal questions (name, gender, small talk)</li>
+      <li>Do NOT message out of curiosity or time-pass</li>
+    </ul>
+    <p>
+      Messages <strong>must clearly include</strong>:
+    </p>
+    <ul>
+      <li>Intended country</li>
+      <li>Budget range</li>
+      <li>Course / field of study</li>
+      <li>Admission intent (year & level)</li>
+    </ul>
+    <p>
+      <strong>Failure to follow this format will result in permanent blocking,
+      without warning or response.</strong>
+    </p>
+  </div>
+
+  <a class="btn" target="_blank"
+     href="https://wa.me/918179456654?text=Country:%20%0ABudget:%20%0ACourse:%20%0AAdmission%20Year:%20">
+     Proceed to WhatsApp
+  </a>
 </section>
 
 <footer>
-© 2025 Universa. Built slowly. Built right.
+  © 2025 Universa. Built slowly. Built right.
 </footer>
 
 <script>
+const countries = [
+"USA","Canada","UK","Ireland","Germany","France","Italy","Spain","Netherlands","Belgium",
+"Sweden","Norway","Finland","Denmark","Austria","Switzerland","Poland","Hungary",
+"Czech Republic","Slovakia","Lithuania","Latvia","Estonia","Portugal",
+"Australia","New Zealand",
+"Japan","South Korea","Malaysia","Singapore","UAE",
+"Russia","Ukraine","Georgia","Armenia","Turkey","Cyprus","Malta"
+];
+
+const list = document.getElementById("countryList");
+countries.forEach(c=>{
+  const d=document.createElement("div");
+  d.className="card";
+  d.innerText=c;
+  d.onclick=()=>showCountry(c);
+  list.appendChild(d);
+});
+
 function goTo(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+}
+
+function showCountry(name){
+  document.getElementById("countryName").innerText=name;
+  goTo("countryDetail");
 }
 </script>
 
