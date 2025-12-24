@@ -32,17 +32,22 @@
       color: #b5b5b5;
     }
 
-    .hero {
-      padding: 40px 20px;
+    section {
+      padding: 45px 20px;
       text-align: center;
+      display: none;
     }
 
-    .hero h2 {
+    section.active {
+      display: block;
+    }
+
+    h2 {
       font-size: 26px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
-    .hero p {
+    p {
       font-size: 15px;
       color: #cccccc;
       max-width: 650px;
@@ -50,36 +55,37 @@
       line-height: 1.7;
     }
 
-    .sections {
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 28px;
+      border-radius: 30px;
+      background: #ffffff;
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .options {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      padding: 30px 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      max-width: 700px;
+      margin: 35px auto 0;
     }
 
     .card {
       background: #121212;
       border: 1px solid #222;
       border-radius: 14px;
-      padding: 24px;
-      text-align: center;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      padding: 22px;
+      cursor: pointer;
     }
 
     .card:hover {
-      transform: translateY(-4px);
       border-color: #444;
-    }
-
-    .card h3 {
-      margin-bottom: 12px;
-      font-size: 19px;
-    }
-
-    .card p {
-      font-size: 14px;
-      color: #bbbbbb;
-      line-height: 1.6;
     }
 
     footer {
@@ -89,89 +95,76 @@
       color: #777;
       border-top: 1px solid #222;
     }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>Universa</h1>
-    <p>The World Is Your Campus</p>
-  </header>
+<header>
+  <h1>Universa</h1>
+  <p>Founded in India. Built for students worldwide.</p>
+</header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h2>Your Global Education Gateway</h2>
-    <p>
-      One platform for Indian students to explore universities,
-      scholarships, and work opportunities across the world —
-      not just one country, but every possible future.
-    </p>
-  </section>
+<!-- WELCOME -->
+<section id="welcome" class="active">
+  <h2>Plan Your Global Education — Honestly</h2>
+  <p>
+    Universa helps students plan international education
+    based on <strong>budget, scholarships, and real-world reality</strong> —
+    not hype, rankings, or pressure.
+  </p>
+  <div class="btn" onclick="goTo('budget')">Start with Your Budget</div>
+</section>
 
-  <!-- MAIN SECTIONS -->
-  <section class="sections">
+<!-- BUDGET ONBOARDING -->
+<section id="budget">
+  <h2>What Is Your 1-Year Budget?</h2>
+  <p>
+    Be honest. This helps the Mentor guide you realistically.
+  </p>
 
-    <!-- STUDY ABROAD -->
-    <a href="https://wa.me/918179456654?text=Hi%20Universa,%20I%20want%20to%20study%20abroad.%20Please%20guide%20me."
-       target="_blank">
-      <div class="card">
-        <h3>🌍 Study Abroad</h3>
-        <p>
-          Explore universities across USA, Canada, Europe,
-          UK, Australia, Russia & more.
-        </p>
-      </div>
-    </a>
+  <div class="options">
+    <div class="card" onclick="selectBudget('Under ₹5 Lakhs')">Under ₹5 Lakhs</div>
+    <div class="card" onclick="selectBudget('₹5–10 Lakhs')">₹5–10 Lakhs</div>
+    <div class="card" onclick="selectBudget('₹10–20 Lakhs')">₹10–20 Lakhs</div>
+    <div class="card" onclick="selectBudget('₹20+ Lakhs')">₹20+ Lakhs</div>
+  </div>
+</section>
 
-    <!-- SCHOLARSHIPS -->
-    <a href="https://wa.me/918179456654?text=Hi%20Universa,%20I%20want%20to%20know%20about%20scholarships.%20Please%20guide%20me."
-       target="_blank">
-      <div class="card">
-        <h3>🎓 Scholarships</h3>
-        <p>
-          Find genuine scholarship options based on
-          country, course, and eligibility.
-        </p>
-      </div>
-    </a>
+<!-- COUNTRY PAGE -->
+<section id="country">
+  <h2>Country Overview (Sample)</h2>
+  <p><strong>Shown in fixed order. Same for every country.</strong></p>
 
-    <!-- WORK OPPORTUNITIES -->
-    <a href="https://wa.me/918179456654?text=Hi%20Universa,%20I%20want%20to%20understand%20work%20opportunities%20abroad.%20Please%20guide%20me."
-       target="_blank">
-      <div class="card">
-        <h3>💼 Work Opportunities</h3>
-        <p>
-          Part-time, post-study work, and basic skilled jobs
-          worldwide.
-        </p>
-      </div>
-    </a>
+  <div class="options">
+    <div class="card">1️⃣ 1-Year Total Cost (min → max)</div>
+    <div class="card">2️⃣ Scholarship Ease</div>
+    <div class="card">3️⃣ Visa Basics</div>
+    <div class="card">4️⃣ Part-Time Reality</div>
+    <div class="card">5️⃣ Reality Check</div>
+    <div class="card">
+      6️⃣ Ask Mentor<br/><br/>
+      <a class="btn" href="https://wa.me/918179456654?text=Hi%20Universa,%20I%20want%20honest%20guidance%20based%20on%20my%20budget."
+         target="_blank">Ask Mentor</a>
+    </div>
+  </div>
+</section>
 
-    <!-- HONEST GUIDANCE -->
-    <a href="https://wa.me/918179456654?text=Hi%20Universa,%20I%20want%20honest%20guidance%20about%20studying%20abroad.%20Please%20guide%20me."
-       target="_blank">
-      <div class="card">
-        <h3>🧭 Honest Guidance</h3>
-        <p>
-          No hype. Real-world information for real
-          student decisions.
-        </p>
-      </div>
-    </a>
+<footer>
+  © 2025 Universa. Built slowly. Built right.
+</footer>
 
-  </section>
+<script>
+  function goTo(id) {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
 
-  <!-- FOOTER -->
-  <footer>
-    © 2025 Universa. Built slowly. Built right.
-  </footer>
+  function selectBudget(budget) {
+    console.log("Selected budget:", budget);
+    goTo('country');
+  }
+</script>
 
 </body>
 </html>
