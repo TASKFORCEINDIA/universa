@@ -6,290 +6,263 @@
 <title>Universa</title>
 
 <style>
-:root{
-  --bg:#0b0b0b;
-  --card:#121212;
-  --line:#222;
-  --text:#ffffff;
-  --muted:#b5b5b5;
-  --danger:#ff2b2b;
-  --danger-bg:#1a0000;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-header{
-  padding:26px 20px;
-  text-align:center;
-  border-bottom:1px solid var(--line);
-}
-header h1{margin:0;font-size:32px;font-weight:700}
-header p{margin-top:6px;font-size:14px;color:var(--muted)}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0b0b0b;color:#fff}
+header{padding:24px;text-align:center;border-bottom:1px solid #222}
+header h1{margin:0;font-size:32px}
+header p{margin-top:6px;font-size:14px;color:#b5b5b5}
 
-section{
-  display:none;
-  padding:32px 16px;
-  text-align:center;
-}
+section{display:none;padding:28px 16px;text-align:center}
 section.active{display:block}
 
-h2{font-size:24px;margin:6px 0 10px}
-p{
-  font-size:15px;color:#cccccc;
-  max-width:820px;margin:0 auto;line-height:1.7
-}
+h2{margin:6px 0 10px;font-size:24px}
+p{max-width:860px;margin:auto;color:#ccc;line-height:1.6}
 
-.options{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:12px;
-  max-width:1100px;
-  margin:20px auto 0;
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+ gap:12px;
+ max-width:1100px;
+ margin:18px auto;
 }
 .card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px;
-  cursor:pointer;
+ background:#121212;
+ border:1px solid #222;
+ border-radius:14px;
+ padding:14px;
+ cursor:pointer;
 }
 .card:hover{border-color:#444}
 
+.tags{font-size:12px;color:#9aa;margin-top:6px}
+
 .btn{
-  display:inline-block;margin-top:22px;
-  padding:12px 26px;border-radius:28px;
-  background:#ffffff;color:#000;
-  font-weight:600;text-decoration:none;cursor:pointer
+ display:inline-block;
+ margin-top:18px;
+ padding:12px 26px;
+ border-radius:26px;
+ background:#fff;color:#000;
+ font-weight:600;text-decoration:none;
 }
-.btn.disabled{
-  opacity:.45;cursor:not-allowed
+
+.expand{
+ display:none;
+ text-align:left;
+ max-width:860px;
+ margin:10px auto 0;
+ background:#141414;
+ border:1px solid #222;
+ border-radius:12px;
+ padding:14px;
+ font-size:14px;
+ color:#ddd;
 }
 
 .warning{
-  max-width:900px;margin:14px auto 0;
-  padding:18px;border:2px solid var(--danger);
-  background:var(--danger-bg);color:#ffdede;border-radius:12px;text-align:left
+ max-width:860px;
+ margin:14px auto;
+ border:2px solid #ff2b2b;
+ background:#1a0000;
+ color:#ffdede;
+ border-radius:12px;
+ padding:16px;
+ text-align:left;
 }
-.warning h3{margin:0 0 8px;color:#ff4d4d;font-size:18px}
-.warning ul{margin:6px 0 6px 18px}
-.warning li{margin-bottom:6px}
+.warning h3{margin-top:0;color:#ff4d4d}
 
-.small{font-size:13px;color:#a9a9a9}
-
-footer{
-  text-align:center;padding:22px 12px;
-  font-size:12px;color:#777;border-top:1px solid var(--line)
-}
+footer{padding:20px;text-align:center;font-size:12px;color:#777;border-top:1px solid #222}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Universa</h1>
-  <p>Gateway to Universities Worldwide</p>
+<h1>Universa</h1>
+<p>Gateway to Universities Worldwide</p>
 </header>
 
-<!-- WELCOME -->
-<section id="welcome" class="active">
-  <h2>Plan Your Global Education — Honestly</h2>
-  <p>
-    Explore universities worldwide using <strong>real costs, scholarships,
-    and reality</strong> — not hype or pressure.
-  </p>
-  <div class="options">
-    <div class="card" onclick="goTo('countries')">🌍 Explore Countries</div>
-    <div class="card" onclick="goTo('scholarships')">🎓 Scholarships</div>
-    <div class="card" onclick="goTo('costs')">💰 Understand Costs</div>
-    <div class="card" onclick="goTo('budget')">🧭 Get Honest Guidance</div>
-  </div>
+<!-- HOME -->
+<section id="home" class="active">
+<h2>Plan Your Global Education — Honestly</h2>
+<p>Real costs. Real scholarships. Real outcomes.</p>
+<div class="grid">
+ <div class="card" onclick="go('countries')">🌍 Explore Countries</div>
+ <div class="card" onclick="go('scholarships')">🎓 Scholarships</div>
+ <div class="card" onclick="go('costs')">💰 Understand Costs</div>
+ <div class="card" onclick="go('budget')">🧭 Get Honest Guidance</div>
+</div>
 </section>
 
-<!-- COUNTRIES (single screen, tight spacing) -->
+<!-- COUNTRIES -->
 <section id="countries">
-  <h2 style="margin-top:-6px">Choose a Country</h2>
-  <div class="options" id="countryList"></div>
+<h2 style="margin-top:-6px">Choose a Country</h2>
+<div class="grid" id="countryList"></div>
 </section>
 
 <!-- COUNTRY DETAIL -->
-<section id="countryDetail">
-  <h2 id="countryName"></h2>
-  <div class="options">
-    <div class="card">1️⃣ 1-Year Total Cost (min → max)</div>
-    <div class="card">2️⃣ Scholarship Ease</div>
-    <div class="card">3️⃣ Visa Basics</div>
-    <div class="card">4️⃣ Part-Time Reality</div>
-    <div class="card">5️⃣ Reality Check</div>
-  </div>
-  <div class="btn" onclick="goTo('budget')">Proceed</div>
+<section id="country">
+<h2 id="countryName"></h2>
+<div class="tags" id="countryTags"></div>
+
+<div class="grid">
+ <div class="card" onclick="toggle('cost')">1-Year Total Cost</div>
+ <div class="card" onclick="toggle('sch')">Scholarship Ease</div>
+ <div class="card" onclick="toggle('visa')">Visa Basics</div>
+ <div class="card" onclick="toggle('work')">Part-Time Reality</div>
+ <div class="card" onclick="toggle('real')">Reality Check</div>
+</div>
+
+<div id="cost" class="expand"></div>
+<div id="sch" class="expand"></div>
+<div id="visa" class="expand"></div>
+<div id="work" class="expand"></div>
+<div id="real" class="expand"></div>
+
+<div class="btn" onclick="go('budget')">Proceed</div>
 </section>
 
-<!-- SCHOLARSHIPS (all countries, ranked) -->
+<!-- SCHOLARSHIPS -->
 <section id="scholarships">
-  <h2>Scholarships — Ranked by Probability</h2>
-  <p class="small">
-    Countries are ordered from higher to lower scholarship probability,
-    so every destination gets a fair view.
-  </p>
-  <div class="options" id="scholarshipList"></div>
+<h2>Scholarships — Ranked by Probability</h2>
+<p>High → Low. Every country gets a fair view.</p>
+<div class="grid" id="schList"></div>
 </section>
 
 <!-- COSTS -->
 <section id="costs">
-  <h2>Understanding Costs</h2>
-  <p>Tuition, living, insurance, and hidden expenses — clearly separated.</p>
-  <div class="options">
-    <div class="card">Low Budget Destinations</div>
-    <div class="card">Mid Budget Destinations</div>
-    <div class="card">High Budget Destinations</div>
-  </div>
+<h2>Understanding Costs</h2>
+<p>Tuition, living, insurance — clearly separated.</p>
+<div class="grid">
+ <div class="card">Low Budget Countries</div>
+ <div class="card">Mid Budget Countries</div>
+ <div class="card">High Budget Countries</div>
+</div>
 </section>
 
-<!-- BUDGET (country-aware realism) -->
+<!-- BUDGET -->
 <section id="budget">
-  <h2>Your 1-Year Budget</h2>
-  <p class="small">Options shown are realistic for the selected country.</p>
-  <div class="options" id="budgetOptions"></div>
+<h2>Your 1-Year Budget</h2>
+<div class="grid" id="budgetGrid"></div>
 </section>
 
-<!-- MENTOR (single entry, warning in RED, heading pulled up) -->
+<!-- MENTOR -->
 <section id="mentor">
-  <h2 style="margin-top:-10px">Mentor Access</h2>
+<h2 style="margin-top:-8px">Mentor Access</h2>
 
-  <div class="warning">
-    <h3>❌ SERIOUS NOTICE — READ CAREFULLY</h3>
-    <p>
-      Mentor access is provided <strong>only for serious students</strong>
-      planning real admissions.
-    </p>
-    <ul>
-      <li>Do NOT send greetings, emojis, or casual messages</li>
-      <li>Do NOT ask personal questions (name, gender, small talk)</li>
-      <li>Do NOT message out of curiosity or time-pass</li>
-    </ul>
-    <p><strong>Messages must include:</strong></p>
-    <ul>
-      <li>Intended country</li>
-      <li>Budget range</li>
-      <li>Course / field</li>
-      <li>Admission year & level</li>
-    </ul>
-    <p><strong>Violations will be permanently blocked.</strong></p>
-  </div>
+<div class="warning">
+<h3>❌ SERIOUS NOTICE — READ CAREFULLY</h3>
+<ul>
+<li>No “Hi / Hello”, emojis, or casual talk</li>
+<li>No personal questions</li>
+<li>Message must include country, budget, course & year</li>
+</ul>
+<p><strong>Violations will be blocked permanently.</strong></p>
+</div>
 
-  <a class="btn" target="_blank"
-     href="https://wa.me/918179456654?text=Country:%20%0ABudget:%20%0ACourse:%20%0AAdmission%20Year:%20">
-     Talk to Mentor
-  </a>
+<a class="btn" target="_blank"
+href="https://wa.me/918179456654?text=Country:%0ABudget:%0ACourse:%0AAdmission%20Year:%0A">
+Talk to Mentor
+</a>
 </section>
 
-<footer>
-  © 2025 Universa. Built slowly. Built right.
-</footer>
+<footer>© 2025 Universa. Built slowly. Built right.</footer>
 
 <script>
-// ---- COUNTRY DATA ----
-// Exclusions already applied. Saudi Arabia INCLUDED.
-const countries = [
-  "Germany","France","Italy","Spain","Portugal","Poland","Hungary","Czech Republic",
-  "Slovakia","Lithuania","Latvia","Estonia","Austria","Belgium","Netherlands",
-  "Sweden","Norway","Finland","Denmark","Switzerland",
-  "UK","Ireland","Canada","USA",
-  "Australia","New Zealand",
-  "Japan","South Korea","Malaysia","Singapore","UAE","Saudi Arabia",
-  "Russia","Ukraine","Georgia","Armenia","Turkey","Cyprus","Malta"
-];
-
-// Rough scholarship probability order (high → low)
-const scholarshipRank = [
-  "Germany","France","Italy","Spain","Portugal","Poland","Hungary","Czech Republic",
-  "Slovakia","Lithuania","Latvia","Estonia","Austria","Belgium",
-  "Sweden","Finland","Denmark","Norway",
-  "Netherlands","Switzerland",
-  "Ireland","UK",
-  "Malaysia","Turkey","Cyprus","Malta",
-  "Japan","South Korea","UAE","Saudi Arabia",
-  "Australia","New Zealand",
-  "Canada","USA",
-  "Russia","Ukraine","Georgia","Armenia","Singapore"
-];
-
-// Budget realism map (very simple MVP rules)
-const minBudgetByCountry = {
-  "USA":"₹20+ Lakhs","Canada":"₹20+ Lakhs",
-  "UK":"₹10–20 Lakhs","Ireland":"₹10–20 Lakhs",
-  "Australia":"₹20+ Lakhs","New Zealand":"₹20+ Lakhs",
-  "Switzerland":"₹20+ Lakhs","Singapore":"₹20+ Lakhs",
-  "UAE":"₹10–20 Lakhs","Saudi Arabia":"₹10–20 Lakhs",
-  "Germany":"₹5–10 Lakhs","France":"₹5–10 Lakhs","Italy":"₹5–10 Lakhs",
-  "Spain":"₹5–10 Lakhs","Portugal":"₹5–10 Lakhs","Poland":"Under ₹5 Lakhs",
-  "Hungary":"Under ₹5 Lakhs","Czech Republic":"Under ₹5 Lakhs",
-  "Slovakia":"Under ₹5 Lakhs","Lithuania":"Under ₹5 Lakhs",
-  "Latvia":"Under ₹5 Lakhs","Estonia":"Under ₹5 Lakhs",
-  "Austria":"₹5–10 Lakhs","Belgium":"₹5–10 Lakhs",
-  "Sweden":"₹10–20 Lakhs","Finland":"₹10–20 Lakhs","Denmark":"₹10–20 Lakhs",
-  "Norway":"₹10–20 Lakhs",
-  "Japan":"₹10–20 Lakhs","South Korea":"₹10–20 Lakhs",
-  "Malaysia":"Under ₹5 Lakhs","Turkey":"Under ₹5 Lakhs",
-  "Cyprus":"Under ₹5 Lakhs","Malta":"₹5–10 Lakhs",
-  "Russia":"Under ₹5 Lakhs","Ukraine":"Under ₹5 Lakhs",
-  "Georgia":"Under ₹5 Lakhs","Armenia":"Under ₹5 Lakhs"
+const DATA={
+Germany:{
+ tags:"Budget-Friendly · Scholarship-Heavy · Research-Focused",
+ cost:"Public universities mostly free. Living ~€10k–12k/year. Blocked account required.",
+ sch:"Medium–High. Living stipends mainly. Academics matter.",
+ visa:"Student visa. Financial proof mandatory.",
+ work:"Limited hours. Helps living, not tuition.",
+ real:"Prepared students succeed. No shortcuts."
+},
+Italy:{
+ tags:"Budget-Friendly · Scholarship-Heavy",
+ cost:"Low–medium cost. Regional scholarships available.",
+ sch:"High. Need-based aid common.",
+ visa:"Proof of funds required.",
+ work:"Limited.",
+ real:"Paperwork strict. Delays common."
+},
+USA:{
+ tags:"High Competition · Elite · Living Cost Heavy",
+ cost:"Very high tuition + living.",
+ sch:"Low for UG. Medium for research.",
+ visa:"Strict financial proof.",
+ work:"Very limited.",
+ real:"High reward, high risk."
+},
+Canada:{
+ tags:"High Competition · Living Cost Heavy",
+ cost:"High overall cost.",
+ sch:"Low–medium.",
+ visa:"Proof required.",
+ work:"Limited.",
+ real:"Not budget-friendly."
+},
+"Saudi Arabia":{
+ tags:"Emerging Option · Research-Focused",
+ cost:"Medium.",
+ sch:"Medium–High for STEM.",
+ visa:"Structured.",
+ work:"Limited.",
+ real:"Cultural adaptation required."
+}
 };
 
-let selectedCountry = null;
+const countries=Object.keys(DATA);
+const schRank=["Germany","Italy","Saudi Arabia","Canada","USA"];
 
-// ---- RENDERERS ----
-const countryList = document.getElementById("countryList");
 countries.forEach(c=>{
+ const d=document.createElement("div");
+ d.className="card";
+ d.innerHTML=c;
+ d.onclick=()=>openCountry(c);
+ document.getElementById("countryList").appendChild(d);
+});
+
+schRank.forEach(c=>{
+ const d=document.createElement("div");
+ d.className="card";
+ d.innerHTML=c;
+ d.onclick=()=>openCountry(c);
+ document.getElementById("schList").appendChild(d);
+});
+
+function openCountry(c){
+ document.getElementById("countryName").innerText=c;
+ document.getElementById("countryTags").innerText=DATA[c].tags;
+ ["cost","sch","visa","work","real"].forEach(k=>{
+  document.getElementById(k).style.display="none";
+  document.getElementById(k).innerText=DATA[c][k];
+ });
+ go("country");
+}
+
+function toggle(id){
+ document.querySelectorAll(".expand").forEach(e=>e.style.display="none");
+ document.getElementById(id).style.display="block";
+}
+
+function go(id){
+ document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ if(id==="budget")loadBudget();
+}
+
+function loadBudget(){
+ const g=document.getElementById("budgetGrid");
+ g.innerHTML="";
+ ["Under ₹5L","₹5–10L","₹10–20L","₹20+L"].forEach(b=>{
   const d=document.createElement("div");
-  d.className="card"; d.innerText=c;
-  d.onclick=()=>{ selectedCountry=c; showCountry(c); };
-  countryList.appendChild(d);
-});
-
-const scholarshipList = document.getElementById("scholarshipList");
-scholarshipRank.forEach(c=>{
-  if(countries.includes(c)){
-    const d=document.createElement("div");
-    d.className="card"; d.innerText=c;
-    scholarshipList.appendChild(d);
+  d.className="card";
+  if(DATA[document.getElementById("countryName").innerText] && document.getElementById("countryName").innerText==="USA" && b==="Under ₹5L"){
+   d.style.opacity=.35; d.innerText=b+" (Not realistic)";
+  }else{
+   d.innerText=b; d.onclick=()=>go("mentor");
   }
-});
-
-function renderBudget(){
-  const wrap=document.getElementById("budgetOptions");
-  wrap.innerHTML="";
-  const order=["Under ₹5 Lakhs","₹5–10 Lakhs","₹10–20 Lakhs","₹20+ Lakhs"];
-  const min = minBudgetByCountry[selectedCountry] || "Under ₹5 Lakhs";
-  const minIndex = order.indexOf(min);
-  order.forEach((b,i)=>{
-    const d=document.createElement("div");
-    d.className="card";
-    d.innerText=b;
-    if(i < minIndex){
-      d.classList.add("disabled");
-      d.style.opacity=".35";
-      d.title="Generally not realistic for this country";
-    }else{
-      d.onclick=()=>goTo('mentor');
-    }
-    wrap.appendChild(d);
-  });
-}
-
-// ---- NAV ----
-function goTo(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  if(id==="budget") renderBudget();
-}
-function showCountry(name){
-  document.getElementById("countryName").innerText=name;
-  goTo("countryDetail");
+  g.appendChild(d);
+ });
 }
 </script>
 
