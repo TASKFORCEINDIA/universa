@@ -55,19 +55,6 @@
       line-height: 1.7;
     }
 
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 14px 28px;
-      border-radius: 30px;
-      background: #ffffff;
-      color: #000;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
     .options {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -88,6 +75,19 @@
       border-color: #444;
     }
 
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 28px;
+      border-radius: 30px;
+      background: #ffffff;
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
     footer {
       text-align: center;
       padding: 25px 15px;
@@ -105,23 +105,26 @@
   <p>Founded in India. Built for students worldwide.</p>
 </header>
 
-<!-- WELCOME -->
+<!-- MAIN / WELCOME -->
 <section id="welcome" class="active">
   <h2>Plan Your Global Education — Honestly</h2>
   <p>
-    Universa helps students plan international education
-    based on <strong>budget, scholarships, and real-world reality</strong> —
-    not hype, rankings, or pressure.
+    Explore international education based on
+    <strong>real costs, scholarships, and reality</strong> —
+    not hype or pressure.
   </p>
-  <div class="btn" onclick="goTo('budget')">Start with Your Budget</div>
+
+  <div class="options">
+    <div class="card" onclick="goTo('budget')">🌍 Explore Countries</div>
+    <div class="card" onclick="goTo('budget')">💰 Understand Costs & Scholarships</div>
+    <div class="card" onclick="goTo('budget')">🧭 Get Honest Guidance</div>
+  </div>
 </section>
 
-<!-- BUDGET ONBOARDING -->
+<!-- BUDGET -->
 <section id="budget">
   <h2>What Is Your 1-Year Budget?</h2>
-  <p>
-    Be honest. This helps the Mentor guide you realistically.
-  </p>
+  <p>Be honest. This helps the Mentor guide you realistically.</p>
 
   <div class="options">
     <div class="card" onclick="selectBudget('Under ₹5 Lakhs')">Under ₹5 Lakhs</div>
@@ -131,7 +134,7 @@
   </div>
 </section>
 
-<!-- COUNTRY PAGE -->
+<!-- COUNTRY -->
 <section id="country">
   <h2>Country Overview (Sample)</h2>
   <p><strong>Shown in fixed order. Same for every country.</strong></p>
@@ -144,7 +147,8 @@
     <div class="card">5️⃣ Reality Check</div>
     <div class="card">
       6️⃣ Ask Mentor<br/><br/>
-      <a class="btn" href="https://wa.me/918179456654?text=Hi%20Universa,%20I%20want%20honest%20guidance%20based%20on%20my%20budget."
+      <a class="btn"
+         href="https://wa.me/918179456654?text=Hi%20Universa,%20I%20want%20honest%20guidance%20based%20on%20my%20budget."
          target="_blank">Ask Mentor</a>
     </div>
   </div>
