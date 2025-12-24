@@ -165,106 +165,80 @@ Talk to Mentor
 </section>
 
 <footer>© 2025 Universa. Built slowly. Built right.</footer>
-
 <script>
-const DATA={
-Germany:{
- tags:"Budget-Friendly · Scholarship-Heavy · Research-Focused",
- cost:"Public universities mostly free. Living ~€10k–12k/year. Blocked account required.",
- sch:"Medium–High. Living stipends mainly. Academics matter.",
- visa:"Student visa. Financial proof mandatory.",
- work:"Limited hours. Helps living, not tuition.",
- real:"Prepared students succeed. No shortcuts."
-},
-Italy:{
- tags:"Budget-Friendly · Scholarship-Heavy",
- cost:"Low–medium cost. Regional scholarships available.",
- sch:"High. Need-based aid common.",
- visa:"Proof of funds required.",
- work:"Limited.",
- real:"Paperwork strict. Delays common."
-},
-USA:{
- tags:"High Competition · Elite · Living Cost Heavy",
- cost:"Very high tuition + living.",
- sch:"Low for UG. Medium for research.",
- visa:"Strict financial proof.",
- work:"Very limited.",
- real:"High reward, high risk."
-},
-Canada:{
- tags:"High Competition · Living Cost Heavy",
- cost:"High overall cost.",
- sch:"Low–medium.",
- visa:"Proof required.",
- work:"Limited.",
- real:"Not budget-friendly."
-},
-"Saudi Arabia":{
- tags:"Emerging Option · Research-Focused",
- cost:"Medium.",
- sch:"Medium–High for STEM.",
- visa:"Structured.",
- work:"Limited.",
- real:"Cultural adaptation required."
-}
+const ALL_COUNTRIES = [
+  "Germany","France","Italy","Spain","Portugal","Poland","Hungary",
+  "Czech Republic","Austria","Belgium","Netherlands","Sweden","Finland",
+  "Denmark","Norway","Switzerland",
+  "UK","Ireland","Canada","USA",
+  "Australia","New Zealand",
+  "Japan","South Korea","Malaysia","Singapore",
+  "Saudi Arabia","UAE","Turkey",
+  "Cyprus","Malta",
+  "Russia","Ukraine","Georgia","Armenia"
+];
+
+const DEFAULT_CONTENT = {
+  tags: "Honest · Transparent · Student-Focused",
+  cost: "Tuition and living costs vary. Living costs are unavoidable.",
+  sch: "Scholarships exist but are competitive.",
+  visa: "Student visa required. Financial proof matters.",
+  work: "Part-time supports living, not full education cost.",
+  real: "Preparation matters more than hope."
 };
 
-const countries=Object.keys(DATA);
-const schRank=["Germany","Italy","Saudi Arabia","Canada","USA"];
+const COUNTRY_OVERRIDES = {
+  Germany:{ tags:"Budget-Friendly · Scholarship-Heavy · Research-Focused" },
+  Italy:{ tags:"Budget-Friendly · Scholarship-Heavy" },
+  USA:{ tags:"High Competition · Living Cost Heavy" },
+  Canada:{ tags:"High Competition · Living Cost Heavy" },
+  "Saudi Arabia":{ tags:"Emerging Option · Research-Focused" }
+};
 
-countries.forEach(c=>{
- const d=document.createElement("div");
- d.className="card";
- d.innerHTML=c;
- d.onclick=()=>openCountry(c);
- document.getElementById("countryList").appendChild(d);
-});
+function getCountryData(name){
+  return {...DEFAULT_CONTENT, ...(COUNTRY_OVERRIDES[name]||{})};
+}
 
-schRank.forEach(c=>{
- const d=document.createElement("div");
- d.className="card";
- d.innerHTML=c;
- d.onclick=()=>openCountry(c);
- document.getElementById("schList").appendChild(d);
+const countryList=document.getElementById("countryList");
+const schList=document.getElementById("schList");
+
+ALL_COUNTRIES.forEach(c=>{
+  const d1=document.createElement("div");
+  d1.className="card";
+  d1.innerText=c;
+  d1.onclick=()=>openCountry(c);
+  countryList.appendChild(d1);
+
+  const d2=document.createElement("div");
+  d2.className="card";
+  d2.innerText=c;
+  d2.onclick=()=>openCountry(c);
+  schList.appendChild(d2);
 });
 
 function openCountry(c){
- document.getElementById("countryName").innerText=c;
- document.getElementById("countryTags").innerText=DATA[c].tags;
- ["cost","sch","visa","work","real"].forEach(k=>{
-  document.getElementById(k).style.display="none";
-  document.getElementById(k).innerText=DATA[c][k];
- });
- go("country");
+  const d=getCountryData(c);
+  document.getElementById("countryName").innerText=c;
+  document.getElementById("countryTags").innerText=d.tags;
+  document.getElementById("cost").innerText=d.cost;
+  document.getElementById("sch").innerText=d.sch;
+  document.getElementById("visa").innerText=d.visa;
+  document.getElementById("work").innerText=d.work;
+  document.getElementById("real").innerText=d.real;
+  document.querySelectorAll(".expand").forEach(e=>e.style.display="none");
+  go("country");
 }
 
 function toggle(id){
- document.querySelectorAll(".expand").forEach(e=>e.style.display="none");
- document.getElementById(id).style.display="block";
+  document.querySelectorAll(".expand").forEach(e=>{
+    e.style.display = (e.id===id && e.style.display!=="block") ? "block" : "none";
+  });
 }
 
 function go(id){
- document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- if(id==="budget")loadBudget();
-}
-
-function loadBudget(){
- const g=document.getElementById("budgetGrid");
- g.innerHTML="";
- ["Under ₹5L","₹5–10L","₹10–20L","₹20+L"].forEach(b=>{
-  const d=document.createElement("div");
-  d.className="card";
-  if(DATA[document.getElementById("countryName").innerText] && document.getElementById("countryName").innerText==="USA" && b==="Under ₹5L"){
-   d.style.opacity=.35; d.innerText=b+" (Not realistic)";
-  }else{
-   d.innerText=b; d.onclick=()=>go("mentor");
-  }
-  g.appendChild(d);
- });
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 </script>
 
-</body>
-</html>
+
