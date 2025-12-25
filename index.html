@@ -181,7 +181,13 @@ const ALL_COUNTRIES = [
 const DEFAULT_CONTENT = {
   tags: "Honest · Transparent · Student-Focused",
   cost: "Tuition and living costs vary by city and lifestyle. Living costs are unavoidable even in low-tuition countries.",
-  sch: "Scholarships exist in most countries
+  sch: "Scholarships exist in most countries but competition is real. Academic profile matters more than agents promise.",
+  visa: "Student visa required. Financial proof, documents
+
+    work: "Part-time work may help living costs but not full education expenses.",
+  real: "Preparation and realistic expectations matter more than country hype."
+};
+
 
   
 
@@ -226,6 +232,9 @@ const COUNTRY_CONTENT = {
 
 };
 
+function getCountryData(name){
+  return COUNTRY_CONTENT[name] || DEFAULT_CONTENT;
+}
 
 
 
