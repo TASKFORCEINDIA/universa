@@ -216,8 +216,9 @@ const COUNTRY_CONTENT = {
 
 
 function getCountryData(name){
-  return DEFAULT_CONTENT;
+  return COUNTRY_CONTENT[name] || DEFAULT_CONTENT;
 }
+
 
 
 ALL_COUNTRIES.forEach(c=>{
