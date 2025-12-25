@@ -187,20 +187,11 @@ const DEFAULT_CONTENT = {
   real: "Preparation matters more than hope."
 };
 
-const COUNTRY_OVERRIDES = {
-  Germany:{ tags:"Budget-Friendly · Scholarship-Heavy · Research-Focused" },
-  Italy:{ tags:"Budget-Friendly · Scholarship-Heavy" },
-  USA:{ tags:"High Competition · Living Cost Heavy" },
-  Canada:{ tags:"High Competition · Living Cost Heavy" },
-  "Saudi Arabia":{ tags:"Emerging Option · Research-Focused" }
-};
 
 function getCountryData(name){
-  return {...DEFAULT_CONTENT, ...(COUNTRY_OVERRIDES[name]||{})};
+  return DEFAULT_CONTENT;
 }
 
-const countryList=document.getElementById("countryList");
-const schList=document.getElementById("schList");
 
 ALL_COUNTRIES.forEach(c=>{
   const d1=document.createElement("div");
